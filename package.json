@@ -1,0 +1,25 @@
+{
+  "name": "aleo-rpc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "node --loader ts-node/esm src/index.ts",
+    "test": "node --loader ts-node/esm src/test.ts",
+    "protoc": "npx protoc --ts_opt server_grpc1,force_client_none,add_pb_suffix --ts_out ./src/protos --proto_path protos protos/*.proto && replace-in-files --regex='import (.*?) from \"(\\./.*?)\";' --replacement='import $1 from \"$2.js\";' './src/protos/*.ts'"
+  },
+  "type": "module",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.2",
+    "@protobuf-ts/plugin": "^2.9.4",
+    "@provablehq/sdk": "^0.7.0",
+    "core-js": "^3.39.0",
+    "replace-in-files": "^3.0.0",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
